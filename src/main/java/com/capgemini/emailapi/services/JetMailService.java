@@ -40,7 +40,10 @@ public class JetMailService implements MailService {
                 .property(Emailv31.MESSAGES, new JSONArray()
                         .put(new JSONObject()
                                 .put(Emailv31.Message.FROM, new JSONObject()
-                                        .put("Email","thomas.robin@capgemini.com"))
+                                        .put("Email","cnr@yopmail.com")
+                                        .put("Name", "Mail Automatique MailJet"))
+                                .put(Emailv31.Message.REPLYTO,new JSONObject()
+                                        .put("Email",sender) )
                                 .put(Emailv31.Message.TO, listreceivers)
                                 .put(Emailv31.Message.SUBJECT, object)
                                 .put(Emailv31.Message.TEXTPART, content)));
