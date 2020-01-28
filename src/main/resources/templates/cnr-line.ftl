@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title></title>
 </head>
-<body style="font-family: Arial, Verdana, sans-serif; font-size: 14px; color: #333333; text-align: justify; margin: 0; padding: 0;" bgcolor="#dee2e6">
+<body style="font-family: Arial, Verdana, sans-serif; font-size: 14px; text-align: justify; margin: 0; padding: 0;" bgcolor="#dee2e6">
 <table width="100%" bgcolor="#dee2e6" style="" cellpadding="0" cellspacing="0" border="0">
     <tbody>
     <tr>
@@ -24,28 +24,20 @@
                 </tr>
                 <tr>
                     <td>
-                        <div style="border-bottom-width: 1px; border-bottom-color: #dee2e6; border-bottom-style: solid; margin: 10px 0;">
+                        <div style="padding-bottom: 10px; border-bottom-width: 1px; border-bottom-color: #dee2e6; border-bottom-style: solid; margin: 10px 0;">
                             <h2 style="color: #c8102e; margin: 5px 0 10px;">${layerName!'&nbsp;'}</h2>
-                            <table width="100%" cellpadding="0" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th style="width: 18%; color: #fff; padding: 5px 8px; border: #454d55;" align="center" bgcolor="#343a40" valign="top"> </th>
-                                    <#list attributes as attribute>
-                                        <th style="width: 18%; color: #fff; padding: 5px 8px; border: #454d55;" align="center" bgcolor="#343a40" valign="top">${attribute}</th>
-                                    </#list>
-                                </tr>
-                                </thead>
-                                <tbody>
+                            <div>
                                 <#list features as feature>
-                                    <tr>
-                                        <td style="width: 18%; border-top-width: 1px; border-top-color: #dee2e6; border-top-style: solid; color: #c8102e; padding: 5px 8px;" valign="top">${feature.id!'&nbsp;'}</td>
+                                    <div>
+                                        <h3 style="color: #c8102e; padding-top: 8px; border-top-width: 1px; border-top-color: #dee2e6; border-top-style: solid; margin: 5px 0;">${feature.id!'&nbsp;'}</h3>
                                         <#list attributes as attribute>
-                                            <td style="width: 18%; border-top-width: 1px; border-top-color: #dee2e6; border-top-style: solid; padding: 5px 8px;" valign="top">${feature.properties[attribute]!'&nbsp;'}</td>
+                                            <div style="display: block; vertical-align: top; width: 100%; margin: 10px 0;">
+                                                <span style="font-weight: 600;">${attribute}</span>: ${feature.properties[attribute]!'&nbsp;'}
+                                            </div>
                                         </#list>
-                                    </tr>
+                                    </div>
                                 </#list>
-                                </tbody>
-                            </table>
+                            </div>
                         </div>
                     </td>
                 </tr>
