@@ -4,7 +4,7 @@
 
 pour générer le war
 ```
-mvn war
+mvn clean install
 ```
 
 
