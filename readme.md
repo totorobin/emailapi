@@ -26,3 +26,23 @@ spring.mail.host=smtp.gmail.com
 spring.mail.port=587
 ...
 ````
+
+
+##tester en local
+
+telécharger [FakeSMTP](http://nilhcem.github.com/FakeSMTP/downloads/fakeSMTP-latest.zip)
+
+le dézziper et lancer le jar :
+````
+ java -jar fakeSMTP.jar
+````
+
+configuration :
+````
+spring.profiles.active=prod
+
+
+spring.mail.host=localhost
+spring.mail.port=25
+...
+````
