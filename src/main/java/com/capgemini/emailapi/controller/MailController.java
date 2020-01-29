@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +43,7 @@ public class MailController {
 
     @PostMapping("/send")
     @CrossOrigin
-    public String send(@RequestBody Mail mail) {
+    public ResponseEntity send(@RequestBody Mail mail) {
         LOG.info("Envoi de mail :\n" + mail.toString());
         try {
             if(mail.getTemplateName() != null && mail.getTemplateData() != null) {
@@ -52,25 +54,25 @@ public class MailController {
             } else {
                 mailService.sendEmail(mail.getContent(), mail.getObject(), mail.getSender(), mail.getReceivers());
             }
-            return "Message Sent";
+            return new ResponseEntity("Message Sent",HttpStatus.OK );
         }  catch (MalformedTemplateNameException e) {
-            return e.getLocalizedMessage();
+            return new ResponseEntity(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         } catch (ParseException e) {
-            return e.getLocalizedMessage();
+            return new ResponseEntity(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         } catch (MailException e) {
-            return e.getLocalizedMessage();
+            return new ResponseEntity(e.getLocalizedMessage(), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (MailjetSocketTimeoutException e) {
-            return e.getLocalizedMessage();
+            return new ResponseEntity(e.getLocalizedMessage(), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (MailjetException e) {
-            return e.getLocalizedMessage();
+            return new ResponseEntity(e.getLocalizedMessage(), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (TemplateNotFoundException e) {
-            return e.getLocalizedMessage();
+            return new ResponseEntity(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         } catch (IOException e) {
-            return e.getLocalizedMessage();
+            return new ResponseEntity(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         } catch (MessagingException e) {
-            return e.getLocalizedMessage();
+            return new ResponseEntity(e.getLocalizedMessage(), HttpStatus.SERVICE_UNAVAILABLE);
         } catch (TemplateException e) {
-            return e.getLocalizedMessage();
+            return new ResponseEntity(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
